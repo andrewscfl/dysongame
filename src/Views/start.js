@@ -1,4 +1,6 @@
+
 export default function(){
+
     return `
         <div class="app__canvas">
             <div class="app__world">
@@ -8,8 +10,9 @@ export default function(){
                     <div></div>
                 </div>
                 </div>
-
-            
         </div>
     `;
+
+    
+
 }

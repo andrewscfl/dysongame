@@ -26,6 +26,7 @@ export default function () {
         item.addEventListener('click', (e) => {
             let view = e.currentTarget.querySelector('span').innerHTML
             SceneDelegate(view)
+            e.preventDefault()
         })
    })
 
