@@ -7,7 +7,7 @@ export default class Collider{
     }
 
     static log_all_list = () => {
-        console.log(this.collider_list)
+        
     }
 
 
@@ -25,13 +25,12 @@ export default class Collider{
                 if((i_x[0] < x_x[0]) && i_x[1] > x_x[1]){
                     if(i_y[0] < x_y[0] && i_y[1] > x_y[1]){
                         // collision logic here
-                        console.log('collision')
+                        
                         
                         if(!document.querySelector('.vaccuum').classList.contains('red')){
                             document.querySelector('.vaccuum').classList.add('red');
                         }
 
-                        
                     }
                     else{
                     }

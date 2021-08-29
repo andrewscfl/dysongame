@@ -8,17 +8,14 @@ export default class{
         this.round = round
     }
 
-    getRandomInt = (max) => {
-        return Math.floor(Math.random() * max);
+    getRandomInt = (min,max) => {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    return_val_or_zero = (val) => {
-        return Math.round(Math.random()) === 1 ? val : 0
-    }
 
     spawnEnemies = () => {
         
-        this.numberEnemies = this.round ** 2
+        this.numberEnemies = this.round * 4
         for(let i = 0; i < this.numberEnemies; i++){
             
             let enemy = document.createElement('div');
@@ -29,37 +26,52 @@ export default class{
             let fromTop, y_spawn, x_spawn;
             Math.round(Math.random()) === 1 ? fromTop = true : fromTop = false
             if(fromTop){
-                y_spawn = this.return_val_or_zero(window.innerHeight)
-                x_spawn = this.getRandomInt(window.innerWidth)
+                
+                y_spawn = 0
+                x_spawn = this.getRandomInt(0,window.innerWidth)
+                console.log("item should spawn at ", y_spawn, x_spawn)
+                
             }
             else{
-                x_spawn = this.return_val_or_zero(window.innerWidth)
-                y_spawn = this.getRandomInt(window.innerHeight)
+                
+                x_spawn = 0
+                y_spawn = this.getRandomInt(0,window.innerHeight)
+                console.log("item should spawn at ", y_spawn, x_spawn)
+                
             }
+            console.log('before set: ' , y_spawn, x_spawn)
             enemy.style.bottom = y_spawn
             enemy.style.right = x_spawn
             
             document.querySelector('.app__world').appendChild(enemy)
+            
             new Collider(document.querySelector(`.${enemy_id}`))
             let interval = setInterval(() => {
                 let elem = document.querySelector(`.${enemy_id}`)
                 if (elem == null){
                     clearInterval(interval)
+                    
                     return
                 }
                 let curr_bottom = elem.style.bottom
                 let curr_right = elem.style.right
+               
                 let new_right, new_bottom
                 if(fromTop){
                     new_bottom = String(parseInt(curr_bottom.replace("px","")) + 3) + "px"
+                    new_right = String(parseInt(curr_right.replace("px","")) + 3) + "px"
                     elem.style.bottom = new_bottom
+                    elem.style.right = new_right
+                    
                 }
                 else{
+                    new_bottom = String(parseInt(curr_bottom.replace("px","")) + 3) + "px"
                     new_right = String(parseInt(curr_right.replace("px","")) + 3) + "px"
+                    elem.style.bottom = new_bottom
                     elem.style.right = new_right
                 }
             }, 50)
-
+            console.log('iteration' ,i)
         }
     }
 }
