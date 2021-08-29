@@ -4,6 +4,7 @@ export function Right() {
     let currHeight = parseInt(currHeight_pre.replace("%",""))
     let updatedHeight = (currHeight - 3) + "%";
     document.querySelector('.hero').style.right = updatedHeight
+    document.querySelector('.hero').classList.add('flip-right')
  }
 
 export function Left() { 
@@ -12,6 +13,7 @@ export function Left() {
     let currHeight = parseInt(currHeight_pre.replace("%",""))
     let updatedHeight = (currHeight + 3) + "%";
     document.querySelector('.hero').style.right = updatedHeight
+    document.querySelector('.hero').classList.remove('flip-right')
 }
 
 export function Up() {

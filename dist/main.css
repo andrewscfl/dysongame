@@ -7,8 +7,19 @@
 	}
 }
 
+@keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
+
 body{
     margin: 0px;
+    overflow-y:hidden;
+    overflow-x: hidden;
 }
 .app__background{
     width: 100%;
@@ -56,21 +67,29 @@ body{
 }
 
 .vaccuum{
-    background-color: grey; 
+    background: url(./assets/dysonsprite.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 9999999;
     width: 70px; 
-    height: 70px; 
-    border-radius: 50%; 
+    height: 300px; 
+    
     position: absolute;
 }
 
-.red{
-    background-color:red !important;
+.flip-right{
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);  
 }
 
 .enemy{
-    width: 50px;
-    height: 50px;
-    background-color:blue;
+    width: 25px;
+    height: 25px;
+    background: url(./assets/dust.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    animation: rotation 8s infinite linear;
+
     position: absolute;
     transition: all .2s;
 }
