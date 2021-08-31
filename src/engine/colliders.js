@@ -1,3 +1,5 @@
+import GameEvents from './gameevents';
+
 export default class Collider{
     static collider_list = []
 
@@ -7,10 +9,10 @@ export default class Collider{
     }
 
     static log(){
-        console.log(this.collider_list)
+       // console.log(this.collider_list)
     }
     
-    static watchCollision = () => {
+    static watchCollision = (gameInstance) => {
         setInterval(()=> this.log(),2000)
         
         for(let i = 0; i < this.collider_list.length; i++){
@@ -30,6 +32,15 @@ export default class Collider{
                             this.collider_list[x].remove()
                             this.collider_list.splice(x,1)   
                         }
+
+                        if(this.collider_list[x].classList.contains('enemy') && this.collider_list[i].classList.contains('earth')){
+                            //dust touches earth
+                            this.collider_list[x].remove()
+                            this.collider_list.splice(x,1)   
+                            gameInstance.removeLife()
+                        }
+
+                        
                         
                         if(!document.querySelector('.vaccuum').classList.contains('red')){
                             document.querySelector('.vaccuum').classList.add('red');

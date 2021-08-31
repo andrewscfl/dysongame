@@ -7,12 +7,14 @@ export function startColliderInit(){
         new Collider(item)
     })
 
-    setInterval(()=> Collider.watchCollision() ,10)
+    
 
-    //start enemy gen
-
-    let game = new GameEvents(10,1,100,1)
+    let game = new GameEvents(10,3,100,1)
+    game.loadStats()
     game.spawnEnemies()
+
+    setInterval(()=> Collider.watchCollision(game) ,10)
+
 
 
     

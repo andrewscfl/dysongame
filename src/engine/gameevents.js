@@ -1,4 +1,5 @@
 import Collider from "./colliders"
+import SceneDelegate from '../modules/scenedelegate';
 
 export default class {
     constructor(numberEnemies, lives, score, round) {
@@ -8,11 +9,40 @@ export default class {
         this.round = round
     }
 
+    removeLife = () => {
+        this.lives = this.lives - 1
+        document.querySelectorAll('.nes-icon')[this.lives].classList.add('is-empty')
+        if (this.lives === 0) {
+            SceneDelegate("End")
+        }
+    }
+
+
+
     getRandomInt = (min, max) => {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    
+    loadStats = () => {
+        let root_lives_elem = document.createElement('div')
+        root_lives_elem.classList.add('lives')
+        root_lives_elem.style.cssText = `display: flex;`;
+        for (let i = 0; i < this.lives; i++) {
+            let start_wrapper = document.createElement('div')
+            start_wrapper.classList.add('start-wrapper')
+            let start = document.createElement('i')
+            start.classList
+                .add('nes-icon', 'is-large', 'heart')
+
+            start_wrapper.appendChild(start)
+            root_lives_elem.appendChild(start_wrapper)
+        }
+
+        document.body.appendChild(root_lives_elem)
+
+    }
+
+
 
 
     spawnEnemies = () => {
@@ -40,25 +70,17 @@ export default class {
                 }
 
                 enemy.style.cssText = `bottom: ${y_spawn}px; right: ${x_spawn}px;`;
-                
-
                 document.querySelector('.app__world').appendChild(enemy)
-                
                 new Collider(document.querySelector(`.${enemy_id}`))
-
-
                 //interval code start
                 let interval = setInterval(() => {
                     let elem = document.querySelector(`.${enemy_id}`)
                     if (elem == null) {
                         clearInterval(interval)
-
                         return
                     }
                     let curr_bottom = elem.style.bottom
                     let curr_right = elem.style.right
-                    
-
                     let new_right, new_bottom
                     if (fromTop) {
                         new_bottom = String(parseInt(curr_bottom.replace("px", "")) + 3)
@@ -69,7 +91,6 @@ export default class {
                     else {
                         new_right = String(parseInt(curr_right.replace("px", "")) + 3)
                         elem.style.cssText = `bottom: ${curr_bottom}; right: ${new_right}px;`;
-                        
                     }
                 }, 50)
 

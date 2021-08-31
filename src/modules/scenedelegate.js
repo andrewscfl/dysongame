@@ -1,5 +1,6 @@
 import StartView from '../Views/start';
 import CreditsView from '../Views/credits';
+import EndView from '../Views/end';
 import {startColliderInit} from './startgamefunctions';
 
 export default function (screen) {
@@ -7,9 +8,11 @@ export default function (screen) {
         document
         .querySelector('.app__background')
         .innerHTML = StartView()
-        startColliderInit()
-
-        
+        startColliderInit()   
+    }
+    if(screen === "End"){
+        document.querySelector('.app__background')
+        .innerHTML = EndView()
     }
     if (screen === "Credits") {
         document
