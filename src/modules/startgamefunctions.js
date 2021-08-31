@@ -9,7 +9,7 @@ export function startColliderInit(){
 
     
 
-    let game = new GameEvents(10,3,100,1)
+    let game = new GameEvents(75,3,100,1)
     game.loadStats()
     game.spawnEnemies()
 

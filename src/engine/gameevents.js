@@ -6,7 +6,6 @@ export default class {
         this.numberEnemies = numberEnemies
         this.lives = lives
         this.score = score
-        this.round = round
     }
 
     removeLife = () => {
@@ -47,7 +46,7 @@ export default class {
 
     spawnEnemies = () => {
 
-        this.numberEnemies = this.round * 50
+        this.numberEnemies = this.numberEnemies
         for (let i = 0; i < this.numberEnemies; i++) {
             setTimeout(() => {
 
